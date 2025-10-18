@@ -60,8 +60,8 @@ while True:
     #If the finish times are similar enough then the program is over
     if ((worst_finish_time - best_finish_time) <= max_time_difference):
         break
-		else:
-				data_pool.clear()
-			  sorted_data_pool.clear()
+	else:
+		data_pool.clear()
+		sorted_data_pool.clear()
 
 print("Best c1: " + best_c1 + "\nBest c2:" + best_c2)
