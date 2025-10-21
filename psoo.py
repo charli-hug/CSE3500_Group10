@@ -1,7 +1,7 @@
 """This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is whimsical idc)"""
 
 import pso, random
-print("Version 2.1")
+print("Version 2.2")
 
 #This will hold all of our data in tuples that stores the c1, c2, and finish time values
 #Finish time will be the amount of iterations our program takes in a specific runthrough to get x% of y particles in the global best (say 95% of 50 particles, or 48)
@@ -34,7 +34,7 @@ while True:
     for i in range(100):
         #Run PSO file and store the c1, c2, and finish time in data pool
         #This gives random values for c1 and c2 that are based on the weights
-				#This assumes that the function in pso.py is called run, but can be changed later
+		#This assumes that the function in pso.py is called run, but can be changed later
         data_pool.append(pso.run((random.choices(c1_values, weights = c1_weights, k = 1)[0]), (random.choices(c1_values, weights = c1_weights, k = 1)[0])))
 
     #This assumes the time will be the first item in the tuple, but can be changed from 0-2
