@@ -1,7 +1,7 @@
 """This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is whimsical idc)"""
 
 import pso, random
-print("Version 2")
+print("Version 2.1")
 
 #This will hold all of our data in tuples that stores the c1, c2, and finish time values
 #Finish time will be the amount of iterations our program takes in a specific runthrough to get x% of y particles in the global best (say 95% of 50 particles, or 48)
@@ -15,7 +15,7 @@ c1_values = []
 c1_weights = []
 c2_values = []
 c2_weights = []
-for i in range(100):
+for i in range(101):
     c1_values.append(i / 100)
 	c1_weights.append(5)
     c2_values.append(i / 100)
