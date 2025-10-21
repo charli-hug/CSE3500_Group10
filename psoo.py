@@ -1,4 +1,4 @@
-"""This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is funny idc)"""
+"""This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is whimsical idc)"""
 
 import pso, random
 print("Version 2")
@@ -17,7 +17,7 @@ c2_values = []
 c2_weights = []
 for i in range(100):
     c1_values.append(i / 100)
-		c1_weights.append(5)
+	c1_weights.append(5)
     c2_values.append(i / 100)
     c2_weights.append(5)
 
