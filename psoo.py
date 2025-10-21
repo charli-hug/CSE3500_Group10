@@ -43,9 +43,10 @@ while True:
     for tuple, index in enumerate(sorted_data_pool):
         #The first and best item has the finish time, c1, and c2 labeled as the best, with the worst finish time grabbed for later comparison
         if index == 0:
-            best_finish_time = tuple[0]
-            best_c1 = tuple[1]
-            best_c2 = tuple[2]
+            if tuple[0] < best_finish_time:
+				best_finish_time = tuple[0]
+            	best_c1 = tuple[1]
+            	best_c2 = tuple[2]
         elif index == 99:
             worst_finish_time = tuple[0]
 
@@ -59,9 +60,12 @@ while True:
 
     #If the finish times are similar enough then the program is over
     if ((worst_finish_time - best_finish_time) <= max_time_difference):
-        break
+        print("Best c1: " + best_c1 + "\nBest c2:" + best_c2)
+		break
+	#This following is for the circumstance where we don't have a good c1 and c2 pair after running enough times that the weights have mostly 0's
+	elif (len(c1_values) < 10) or (len(c2_values) < 10):
+		print("A best c1 and c2 value could not be found. Repeating in 5 seconds. Press 'Q' to stop.")
+		#Add in 5 second timer, where if Q is pressed during this time it will stop
 	else:
 		data_pool.clear()
 		sorted_data_pool.clear()
-
-print("Best c1: " + best_c1 + "\nBest c2:" + best_c2)
