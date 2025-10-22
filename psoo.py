@@ -1,7 +1,7 @@
 """This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is whimsical idc)"""
 
 import pso, random
-print("Version 2.2")
+print("Version 2.3")
 
 #This will hold all of our data in tuples that stores the c1, c2, and finish time values
 #Finish time will be the amount of iterations our program takes in a specific runthrough to get x% of y particles in the global best (say 95% of 50 particles, or 48)
@@ -29,6 +29,9 @@ worst_finish_time = 0
 
 #0 is a placeholder, this will be whatever number we want that determines how different the best and worst is
 max_time_difference = 0
+
+#If repeat is 0, then the code will run again. If repeat is 1, the code will end
+repeat = 0
 
 while True:
     for i in range(100):
@@ -61,11 +64,22 @@ while True:
     #If the finish times are similar enough then the program is over
     if ((worst_finish_time - best_finish_time) <= max_time_difference):
         print("Best c1: " + best_c1 + "\nBest c2:" + best_c2)
-		break
+		repeat = 1
 	#This following is for the circumstance where we don't have a good c1 and c2 pair after running enough times that the weights have mostly 0's
-	elif (len(c1_values) < 10) or (len(c2_values) < 10):
-		print("A best c1 and c2 value could not be found. Repeating in 5 seconds. Press 'Q' to stop.")
-		#Add in 5 second timer, where if Q is pressed during this time it will stop
+	#Still need to add implementation for removing elements from c1_values and c2_values when the weight is 0
+	elif (len(c1_values) < 10) and (len(c2_values) < 10):
+		r_or_q = input("A best c1 and c2 value could not be found. Press 'R' to repeat. Press 'Q' to stop.")
+		while True:
+			if (r_or_q == "R") or (r_or_q == "r"):
+				break
+			elif (r_or_q == "Q") or (r_or_q == "q"):
+				repeat = 1
+				break
+			else:
+				r_or_q = input("Invalid input. Press 'R' to repeat. Press 'Q' to stop.")
 	else:
 		data_pool.clear()
 		sorted_data_pool.clear()
+	
+	if repeat == 1:
+		break
