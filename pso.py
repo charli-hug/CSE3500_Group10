@@ -1,6 +1,6 @@
 from random import uniform, random
 import numpy as np
-import time
+
 
 class Particle:
     def __init__(self):
@@ -45,12 +45,6 @@ class Particle:
             if self.position_i[i]<bounds[i][0]:
                 self.position_i[i]=bounds[i][0]
 
-    def sorted(data_pool, key = lambda item: item[0]):
-        # this is the sorted function that is called in line 41 of the psoo algorithm
-        pass
-        w=0.5       # constant inertia weight (how much to weigh the previous velocity
-        c1=1        # cognative constant (not sure what this means)
-        c2=2        # social constant (also not sure what this means)
 
 
 
@@ -65,9 +59,8 @@ def run (num_particles, c1, c2):
         swarm.append(Particle())
 
     # begin optimization loop
-    i=0
+    iterations=0
     maxiter = 30
-    start = time.perf_counter()
     while i<maxiter:
         # cycle through particles in swarm and evaluate fitness
         for j in range(0,num_particles):
@@ -82,13 +75,6 @@ def run (num_particles, c1, c2):
         for j in range(0,num_particles):
             swarm[j].update_velocity(pos_best_g, c1, c2)
             swarm[j].update_position(bounds)
-        i+=1
-    end = time.perf_counter()
-    final_time = round(end - start, 6)
-    return (c1, c2, final_time)
+        iterations+=1
+    return (c1, c2, iiterations)
 
-    #  def test_everything(self):
-        # x0=[5,5]
-        # bounds=[(-10,10),(-10,10)]
-        # opt = pso_simple.minimize(sphere, x0, bounds, num_particles=15, maxiter=30, verbose=False)
-        # self.assertLess(sphere(opt[1]), sphere(x0))
