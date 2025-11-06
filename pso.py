@@ -76,5 +76,5 @@ def run (num_particles, c1, c2):
             swarm[j].update_velocity(pos_best_g, c1, c2)
             swarm[j].update_position(bounds)
         iterations+=1
-    return (c1, c2, iiterations)
+    return (c1, c2, iterations)
 
