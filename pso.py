@@ -1,6 +1,6 @@
-from random import uniform
-from random import random
+from random import uniform, random
 import numpy as np
+import time
 
 class Particle:
     def __init__(self):
@@ -11,8 +11,11 @@ class Particle:
         self.err_i=-1           # error individual
 
     # evaluate current fitness
-    def evaluate(self,costFunc):
-        self.err_i=costFunc(self.position_i)
+    def evaluate(self):
+        total=0      #using sphere formula as fitness evaluation
+        for i in range(len(self.position_i)):
+            total+=x[i]**2
+        self.err_i = total
         # check to see if the current position is an individual best
         if self.err_i < self.err_best_i or self.err_best_i == -1:
             self.pos_best_i = self.position_i.copy()
@@ -24,14 +27,23 @@ class Particle:
         r1= random()
         r2= random()
         w=0.5       # constant inertia weight (how much to weigh the previous velocity
-        for i in range(0,2):
+        for i in range(0,2):    #0-2 range for 2-D 
             vel_cognitive=c1*r1*(self.pos_best_i[i]-self.position_i[i])
             vel_social=c2*r2*(pos_best_g[i]-self.position_i[i])
             self.velocity_i[i]=w*self.velocity_i[i]+vel_cognitive+vel_social
 
     def update_position(self,bounds):
         # updates the particle position based off new velocity updates
-        pass
+        for i in range(0,2):    #0-2 range for 2-D 
+            self.position_i[i]=self.position_i[i]+self.velocity_i[i]
+            
+            # adjust maximum position if necessary
+            if self.position_i[i]>bounds[i][1]:
+                self.position_i[i]=bounds[i][1]
+
+            # adjust minimum position if neseccary
+            if self.position_i[i]<bounds[i][0]:
+                self.position_i[i]=bounds[i][0]
 
     def sorted(data_pool, key = lambda item: item[0]):
         # this is the sorted function that is called in line 41 of the psoo algorithm
@@ -40,3 +52,43 @@ class Particle:
         c1=1        # cognative constant (not sure what this means)
         c2=2        # social constant (also not sure what this means)
 
+
+
+#to run algorithm --> returning c1, c2, final_time
+def run (num_particles, c1, c2):
+
+    err_best_g=-1                   # best error for group
+    pos_best_g=[]                   # best position for group
+    # establish the swarm
+    swarm=[]
+    for i in range(0,num_particles):
+        swarm.append(Particle())
+
+    # begin optimization loop
+    i=0
+    maxiter = 30
+    start = time.perf_counter()
+    while i<maxiter:
+        # cycle through particles in swarm and evaluate fitness
+        for j in range(0,num_particles):
+            swarm[j].evaluate()
+
+            # determine if current particle is the best (globally)
+            if swarm[j].err_i<err_best_g or err_best_g==-1:
+                pos_best_g=list(swarm[j].position_i)
+                err_best_g=float(swarm[j].err_i)
+        
+        # cycle through swarm and update velocities and position
+        for j in range(0,num_particles):
+            swarm[j].update_velocity(pos_best_g, c1, c2)
+            swarm[j].update_position(bounds)
+        i+=1
+    end = time.perf_counter()
+    final_time = round(end - start, 6)
+    return (c1, c2, final_time)
+
+    #  def test_everything(self):
+        # x0=[5,5]
+        # bounds=[(-10,10),(-10,10)]
+        # opt = pso_simple.minimize(sphere, x0, bounds, num_particles=15, maxiter=30, verbose=False)
+        # self.assertLess(sphere(opt[1]), sphere(x0))
