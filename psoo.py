@@ -38,7 +38,7 @@ while True:
         #Run PSO file and store the c1, c2, and finish time in data pool
         #This gives random values for c1 and c2 that are based on the weights
 		#This assumes that the function in pso.py is called run, but can be changed later
-        data_pool.append(pso.run((random.choices(c1_values, weights = c1_weights, k = 1)[0]), (random.choices(c1_values, weights = c1_weights, k = 1)[0])))
+        data_pool.append(pso.run((random.choices(c1_values, weights = c1_weights, k = 1)[0]), (random.choices(c2_values, weights = c2_weights, k = 1)[0])))
 
     #This assumes the time will be the first item in the tuple, but can be changed from 0-2
     sorted_data_pool = sorted(data_pool, key = lambda item: item[0])
