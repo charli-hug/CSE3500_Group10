@@ -29,7 +29,7 @@ Z = sphere(X, Y)
 iteration=1
 maxiter = 2
 
-if iteration is 1 or maxiter: 
+if iteration == 1 or maxiter: 
 
   plt.contour(X, Y, Z, levels=20)
 
