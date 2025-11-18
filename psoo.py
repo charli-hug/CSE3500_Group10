@@ -1,7 +1,9 @@
 """This file is called psoo, for particle swarm optimization optimization, as it optimizes the c1 and c2 values (dumb placeholder but psoo is whimsical idc)"""
 
 import pso, random
-print("Version 2.4")
+dimension = 2
+print("Version 2.4.1")
+
 
 def initialize():
 	#This will hold all of our data in tuples that stores the c1, c2, and finish time values
@@ -44,7 +46,7 @@ if __name__ == "__main__":
 			num_particles = 20
 			pso_c1 = random.choices(c1_values, weights = c1_weights, k = 1)[0]
 			pso_c2 = random.choices(c2_values, weights = c2_weights, k = 1)[0]
-	        data_pool.append(pso.run(num_particles, pso_c1, pso_c2))
+	        data_pool.append(pso.run(num_particles, pso_c1, pso_c2, best_finish_time, worst_finish_time, dimension))
 	
 	    #This assumes the time will be the first item in the tuple, but can be changed from 0-2
 	    sorted_data_pool = sorted(data_pool, key = lambda item: item[0])
