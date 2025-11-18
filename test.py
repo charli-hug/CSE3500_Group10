@@ -74,7 +74,7 @@ def test_everything():
         x0=[5,5] * i
         bounds=[(-10,10),(-10,10)] * i
         start = time.time()
-        opt = run(sphere, x0, bounds, num_particles=15, maxiter=30, verbose=False)
+        opt = run(sphere, x0, bounds, num_particles=15, maxiter=30, verbose=False) # MUST TAKE BOUNDS AND X0 NO MATTER WHAT 
         # opt = run(ackley, x0, bounds, num_particles=100, maxiter=100, verbose=False)
         # opt = run(cigar, x0, bounds, num_particles=100, maxiter=100, verbose=False)
         # opt = run(rosenbrock, x0, bounds, num_particles=100, maxiter=100, verbose=False)
