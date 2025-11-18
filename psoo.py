@@ -27,8 +27,8 @@ best_c2 = 0
 best_finish_time = 0
 worst_finish_time = 0
 
-#0 is a placeholder, this will be whatever number we want that determines how different the best and worst is
-max_time_difference = 0
+#1 is a placeholder, this will be whatever number we want that determines how different the best and worst is
+max_time_difference = 1
 
 #If repeat is 0, then the code will run again. If repeat is 1, the code will end
 repeat = 0
@@ -41,7 +41,7 @@ while True:
 		num_particles = 20
 		pso_c1 = random.choices(c1_values, weights = c1_weights, k = 1)[0]
 		pso_c2 = random.choices(c2_values, weights = c2_weights, k = 1)[0]
-        data_pool.append(pso.run(num_particles, pso_c1, pso_c2)
+        data_pool.append(pso.run(num_particles, pso_c1, pso_c2))
 
     #This assumes the time will be the first item in the tuple, but can be changed from 0-2
     sorted_data_pool = sorted(data_pool, key = lambda item: item[0])
