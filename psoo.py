@@ -98,7 +98,7 @@ while True:
 	if repeat == 1:
 		break
 import pso, random
-print("Version 2.4.2")
+print("Version 2.4.3")
 x0 = [5, 5]
 bounds = [(-10,10), (-10,10)]
 
@@ -128,10 +128,13 @@ def initialize():
 	worst_finish_time = 0
 	
 	#1 is a placeholder, this will be whatever number we want that determines how different the best and worst is
-	max_time_difference = 1
+	max_time_difference = input("Set the maximum time difference: ")
 	
 	#If repeat is 0, then the code will run again. If repeat is 1, the code will end
 	repeat = 0
+
+	#Sets the number of particles we want to see in PSO
+	num_particles = 20
 
 if __name__ == "__main__":
 	initialize()
@@ -140,7 +143,6 @@ if __name__ == "__main__":
 	        #Run PSO file and store the c1, c2, and finish time in data pool
 	        #This gives random values for c1 and c2 that are based on the weights
 			#This assumes that the function in pso.py is called run, but can be changed later
-			num_particles = 20
 			pso_c1 = random.choices(c1_values, weights = c1_weights, k = 1)[0]
 			pso_c2 = random.choices(c2_values, weights = c2_weights, k = 1)[0]
 	        data_pool.append(pso.run(num_particles, pso_c1, pso_c2, best_finish_time, worst_finish_time, x0, bounds))
@@ -162,7 +164,7 @@ if __name__ == "__main__":
 	        if index < 10:
 	            c1_weights[c1_values.index(tuple[1])] += 1
 	            c2_weights[c2_values.index(tuple[2])] += 1
-	        elif index > 88:
+	        elif index > 89:
 	            c1_weights[c1_values.index(tuple[1])] -= 1
 				#This gets rid of any elements if they no longer have any associated weights (hopefully)
 				if c1_weights[c1_values.index(tuple[1])] == 0:
