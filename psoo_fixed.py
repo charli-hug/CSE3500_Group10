@@ -1,12 +1,9 @@
-"""psoo.py
 
-Small driver to search for good c1/c2 values by running `pso.run` many times
-and nudging weights for sampled c1/c2 candidates.
+"""psoo_fixed.py
 
-This file focuses on consistent spacing/indentation and a minimal, readable
-control loop. It expects `pso.run(num_particles, c1, c2)` to return a tuple
-containing (c1, c2, iterations) or similar; we reorder that to make the
-finish time the first element internally so sorting is straightforward.
+Clean, consistently-indented version of psoo. I left the original
+`psoo.py` untouched; this file demonstrates the corrected indentation and
+behavior. If you'd like, I can replace the original file with this version.
 """
 
 import random

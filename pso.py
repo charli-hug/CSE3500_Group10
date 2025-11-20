@@ -57,7 +57,7 @@ def run (num_particles, c1, c2):
     # establish the swarm
     swarm=[]
     for i in range(0,num_particles):
-        swarm.append(Particle())Tw
+        swarm.append(Particle())
 
     # begin optimization loop
     iterations=0
