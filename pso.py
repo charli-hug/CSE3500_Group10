@@ -61,7 +61,7 @@ def run (num_particles, c1, c2):
 
     # begin optimization loop
     iterations=0
-    maxiter = 30
+    maxiter = 200
     while i<maxiter:
         # cycle through particles in swarm and evaluate fitness
         for j in range(0,num_particles):
