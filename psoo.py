@@ -68,7 +68,7 @@ if __name__ == "__main__":
 	        if index < 10:
 	            c1_weights[c1_values.index(tuple[1])] += 1
 	            c2_weights[c2_values.index(tuple[2])] += 1
-	        elif index > 89:
+	        elif index > 88:
 	            c1_weights[c1_values.index(tuple[1])] -= 1
 				#This gets rid of any elements if they no longer have any associated weights (hopefully)
 				if c1_weights[c1_values.index(tuple[1])] == 0:
