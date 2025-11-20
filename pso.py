@@ -1,5 +1,6 @@
 from random import uniform, random
 import numpy as np
+import cost_function
 
 
 class Particle:
@@ -13,7 +14,7 @@ class Particle:
     # evaluate current fitness
     def evaluate(self):
         total=0      #using sphere formula as fitness evaluation
-        for i in range(len(self.position_i)):
+        for i in range(len(self.position_i)): # confused bc this is the cost function
             total+=x[i]**2
         self.err_i = total
         # check to see if the current position is an individual best
@@ -56,7 +57,7 @@ def run (num_particles, c1, c2):
     # establish the swarm
     swarm=[]
     for i in range(0,num_particles):
-        swarm.append(Particle())
+        swarm.append(Particle())Tw
 
     # begin optimization loop
     iterations=0
